@@ -39,32 +39,43 @@ const Login = ({ logInUser }) => {
       console.log(err);
     }
   };
-
+  const googleAuth = () => {
+    console.log('googleAuth is clicked');
+    fetch('/auth/login')
+      .then((data) => data.json())
+      .then((data) => console.log(data));
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     login();
   };
 
   return (
-    <div className="signLogIn">
+    <div className='signLogIn'>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>Username: </label>
-        <input type="text" value={username} onChange={handleChangeUserName} />
+        <input type='text' value={username} onChange={handleChangeUserName} />
         <label>Password: </label>
         <input
-          type="password"
+          type='password'
           value={password}
           onChange={handleChangePassword}
         />
 
-        <div className="buttons">
-          <button type="submit">Log-in</button>
+        <div className='buttons'>
+          <button type='submit'>Log-in</button>
           <Link to={`/signup`}>
-            <button type="button" className="buttons">
+            <button type='button' className='buttons'>
               Sign Up
             </button>
           </Link>
+          {/* <ul>
+            <li onClick={googleAuth}>Log in using Google</li>
+            <li>
+              <a href='/auth/logout'>Log out of Google</a>
+            </li>
+          </ul> */}
         </div>
       </form>
     </div>
